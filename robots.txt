@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mubinakib5.github.io/mubin/sitemap.xml
