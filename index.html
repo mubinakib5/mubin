@@ -6,14 +6,15 @@
     <title>Abdullah Al Mubin | AI Automation Engineer</title>
     <meta
       name="description"
-      content="Portfolio of Abdullah Al Mubin, an AI automation engineer building operational systems, workflow automations, and modern digital products."
+      content="Portfolio website for Abdullah Al Mubin, an AI automation engineer building systems, workflows, and modern digital operations."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -22,12 +23,8 @@
     <div class="page-shell">
       <header class="site-header">
         <div class="container nav-shell">
-          <a class="brand" href="#hero" aria-label="Go to homepage">
-            <span class="brand-mark">AM</span>
-            <span class="brand-copy">
-              <strong>Abdullah Al Mubin</strong>
-              <span>AI Automation Engineer</span>
-            </span>
+          <a class="brand" href="#hero" aria-label="Home">
+            <span class="brand-word">Mubin</span>
           </a>
 
           <button
@@ -43,147 +40,192 @@
           </button>
 
           <nav class="site-nav" id="site-nav" aria-label="Primary">
-            <a href="#about">About</a>
-            <a href="#work">Work</a>
+            <a href="#hero">Home</a>
             <a href="#services">Services</a>
-            <a href="#experience">Experience</a>
-            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#faq">Faq</a>
+            <a class="nav-cta" href="#contact">Contact</a>
           </nav>
         </div>
       </header>
 
       <main id="main">
-        <section class="hero section" id="hero">
+        <section class="hero section lilac-panel" id="hero">
           <div class="container hero-grid">
-            <div class="hero-copy">
+            <div class="hero-copy reveal">
               <p class="eyebrow" id="hero-kicker"></p>
               <h1 class="hero-title" id="hero-title"></h1>
-              <p class="hero-summary" id="hero-summary"></p>
-              <p class="hero-description" id="hero-description"></p>
-
+              <p class="hero-subtitle" id="hero-summary"></p>
               <div class="hero-actions" id="hero-actions"></div>
-
-              <ul class="hero-meta" id="hero-meta"></ul>
             </div>
 
-            <aside class="hero-panel reveal" aria-label="Key profile details">
-              <div class="panel-glow"></div>
-              <div class="hero-card">
-                <p class="mini-label">Current focus</p>
-                <h2 id="focus-title"></h2>
-                <p id="focus-copy"></p>
-              </div>
-
-              <div class="metric-stack" id="hero-highlights"></div>
-            </aside>
+            <div class="hero-portrait reveal">
+              <div class="portrait-blob"></div>
+              <div class="portrait-ring"></div>
+              <img
+                id="hero-image"
+                class="portrait-image hero-photo"
+                src="./assets/profile-hero.jpg"
+                alt="Portrait of Abdullah Al Mubin"
+              />
+              <span class="float-badge badge-top">AI systems</span>
+              <span class="float-badge badge-bottom">Automation</span>
+              <span class="doodle doodle-one">✦</span>
+              <span class="doodle doodle-two">⌇⌇</span>
+            </div>
           </div>
         </section>
 
-        <section class="section credibility" aria-labelledby="credibility-title">
+        <section class="section" id="services">
           <div class="container">
-            <div class="section-head compact">
-              <p class="eyebrow">Credibility</p>
-              <h2 id="credibility-title">Built on delivery, systems thinking, and momentum.</h2>
+            <div class="section-heading center reveal">
+              <p class="eyebrow">What I do</p>
+              <h2>The service I offer is specifically designed to meet your needs.</h2>
             </div>
-            <div class="credibility-strip" id="credibility-strip"></div>
-          </div>
-        </section>
 
-        <section class="section about" id="about" aria-labelledby="about-title">
-          <div class="container about-grid">
-            <div class="section-head sticky-head">
-              <p class="eyebrow">About</p>
-              <h2 id="about-title">A portfolio framed around structure, execution, and automation.</h2>
-            </div>
-            <div class="about-body">
-              <div class="prose-card reveal">
-                <p id="about-copy"></p>
-              </div>
-              <div class="quote-card reveal">
-                <p class="quote-mark">“</p>
-                <p id="about-quote"></p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section work" id="work" aria-labelledby="work-title">
-          <div class="container">
-            <div class="section-head">
-              <p class="eyebrow">Selected work</p>
-              <h2 id="work-title">Projects that connect systems design with practical shipping.</h2>
-            </div>
-            <div class="project-grid" id="project-grid"></div>
-          </div>
-        </section>
-
-        <section class="section services" id="services" aria-labelledby="services-title">
-          <div class="container">
-            <div class="section-head">
-              <p class="eyebrow">Services</p>
-              <h2 id="services-title">What I can help teams and clients build.</h2>
-            </div>
             <div class="service-grid" id="service-grid"></div>
-          </div>
-        </section>
 
-        <section class="section process" aria-labelledby="process-title">
-          <div class="container">
-            <div class="section-head">
-              <p class="eyebrow">Process</p>
-              <h2 id="process-title">A delivery rhythm built for fast-moving environments.</h2>
+            <div class="section-cta reveal">
+              <a class="button secondary" href="#contact">Book a chat</a>
             </div>
-            <ol class="process-grid" id="process-grid"></ol>
           </div>
         </section>
 
-        <section class="section tools" aria-labelledby="tools-title">
-          <div class="container tools-grid">
-            <div>
-              <div class="section-head compact">
-                <p class="eyebrow">Stack</p>
-                <h2 id="tools-title">Tools across automation, operations, and product execution.</h2>
+        <section class="section lilac-panel about-section" id="about">
+          <div class="container about-grid">
+            <div class="about-visual reveal">
+              <div class="portrait-blob about-blob"></div>
+              <div class="portrait-ring"></div>
+              <img
+                id="about-image"
+                class="portrait-image about-photo"
+                src="./assets/profile-about.jpg"
+                alt="Second portrait of Abdullah Al Mubin"
+              />
+              <span class="float-badge badge-about">Systems + execution</span>
+            </div>
+
+            <div class="about-copy reveal">
+              <p class="eyebrow">More about me</p>
+              <h2 id="about-title"></h2>
+              <p class="about-text" id="about-copy"></p>
+
+              <div class="about-actions">
+                <a class="button primary" href="#projects">View projects</a>
               </div>
-              <p class="section-intro">
-                These are grouped to stay editable and easy to migrate into a component-based content model later.
-              </p>
-            </div>
-            <div class="skill-cloud" id="skill-cloud"></div>
-          </div>
-        </section>
 
-        <section class="section experience" id="experience" aria-labelledby="experience-title">
-          <div class="container">
-            <div class="section-head">
-              <p class="eyebrow">Experience</p>
-              <h2 id="experience-title">Roles spanning automation, systems design, and web delivery.</h2>
-            </div>
-            <div class="timeline" id="experience-timeline"></div>
-          </div>
-        </section>
-
-        <section class="section trust" aria-labelledby="trust-title">
-          <div class="container trust-grid">
-            <div>
-              <div class="section-head compact">
-                <p class="eyebrow">Trust signals</p>
-                <h2 id="trust-title">Competitive achievements, education, and leadership roles.</h2>
+              <div class="experience-panel">
+                <div class="experience-head">
+                  <h3>My experiences</h3>
+                  <p>Roles across operations, systems, design, and frontend execution.</p>
+                </div>
+                <div class="experience-list" id="experience-list"></div>
               </div>
-              <div class="trust-list" id="trust-list"></div>
             </div>
-            <div class="education-card reveal" id="education-card"></div>
           </div>
         </section>
 
-        <section class="section contact" id="contact" aria-labelledby="contact-title">
+        <section class="section quote-section">
           <div class="container">
-            <div class="contact-shell reveal">
-              <div>
-                <p class="eyebrow">Contact</p>
-                <h2 id="contact-title">Looking for an automation-minded operator who can also ship?</h2>
-                <p id="contact-copy"></p>
+            <div class="quote-card reveal">
+              <p class="eyebrow">Approach</p>
+              <blockquote id="quote-text"></blockquote>
+              <p class="quote-author">Abdullah Al Mubin</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="projects">
+          <div class="container">
+            <div class="section-heading center reveal">
+              <p class="eyebrow">Latest projects</p>
+              <h2>Check out some of our awesome projects with creative ideas.</h2>
+            </div>
+
+            <div class="project-grid" id="project-grid"></div>
+
+            <div class="section-cta reveal">
+              <a class="button secondary" href="#contact">Start a project</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="stats-wrap">
+          <div class="container">
+            <div class="stats-card reveal" id="stats-grid"></div>
+          </div>
+        </section>
+
+        <section class="section lilac-panel workflow-section">
+          <div class="container">
+            <div class="section-heading center reveal">
+              <p class="eyebrow">Workflow</p>
+              <h2>My workflow is centered around being highly productive.</h2>
+            </div>
+
+            <div class="workflow-grid" id="workflow-grid"></div>
+
+            <div class="tool-marquee reveal" id="tool-marquee"></div>
+          </div>
+        </section>
+
+        <section class="section plans-section">
+          <div class="container">
+            <div class="section-heading center reveal">
+              <p class="eyebrow">Ways to work together</p>
+              <h2>Choose a plan that’s built for your workflow.</h2>
+            </div>
+
+            <div class="plan-grid" id="plan-grid"></div>
+          </div>
+        </section>
+
+        <section class="section faq-section" id="faq">
+          <div class="container">
+            <div class="section-heading center reveal">
+              <p class="eyebrow">Have question?</p>
+              <h2>Common things people ask before we work together.</h2>
+            </div>
+
+            <div class="faq-list reveal" id="faq-list"></div>
+          </div>
+        </section>
+
+        <section class="section contact-section lilac-panel" id="contact">
+          <div class="container">
+            <div class="contact-card reveal">
+              <div class="contact-head">
+                <p class="eyebrow">Need help?</p>
+                <h2>Got a project in mind?<br />Let’s get in touch.</h2>
               </div>
-              <div class="contact-actions" id="contact-actions"></div>
+
+              <div class="contact-links" id="contact-links"></div>
+
+              <form
+                class="contact-form"
+                action="mailto:mubinalakib786@gmail.com"
+                method="post"
+                enctype="text/plain"
+              >
+                <label>
+                  <span>Your Name</span>
+                  <input type="text" name="name" placeholder="Your name" />
+                </label>
+                <label>
+                  <span>Your Email</span>
+                  <input type="email" name="email" placeholder="your@email.com" />
+                </label>
+                <label class="full">
+                  <span>Your Message</span>
+                  <textarea
+                    name="message"
+                    rows="4"
+                    placeholder="Tell me about your project, role, or idea."
+                  ></textarea>
+                </label>
+                <button class="button primary" type="submit">Submit</button>
+              </form>
             </div>
           </div>
         </section>
@@ -191,8 +233,11 @@
 
       <footer class="site-footer">
         <div class="container footer-shell">
-          <p id="footer-copy"></p>
-          <a href="#hero">Back to top</a>
+          <div>
+            <p class="footer-brand">Mubin</p>
+            <p id="footer-copy"></p>
+          </div>
+          <div class="footer-social" id="footer-social"></div>
         </div>
       </footer>
     </div>
