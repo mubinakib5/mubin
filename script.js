@@ -614,7 +614,7 @@ const setupContactForm = () => {
 
       setLastSubmittedAt();
       setStatus(
-        "Message submitted. Please check the spreadsheet to confirm it was saved.",
+        "Thanks for reaching out. I will get back to you soon.",
         "is-success"
       );
       form.reset();
