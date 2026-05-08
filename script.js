@@ -445,7 +445,192 @@ const setupNavigation = () => {
   });
 };
 
+const setupContactForm = () => {
+  const form = document.querySelector("#contact-form");
+  const status = document.querySelector("#form-status");
+  if (!form || !status) return;
+
+  const endpoint =
+    "https://script.google.com/macros/s/AKfycbx4-g8mCDyw7l-vbDD1xHp-1BNHhb6qtilrFMtflQFIUl4ve1wLWB0YcJZwCWx-zk-FEw/exec";
+  const mountedAt = Date.now();
+  const blockedTerms = [
+    "casino",
+    "crypto",
+    "forex",
+    "loan",
+    "porn",
+    "seo backlink",
+    "viagra"
+  ];
+  const disposableEmailDomains = [
+    "10minutemail.com",
+    "guerrillamail.com",
+    "mailinator.com",
+    "tempmail.com",
+    "yopmail.com"
+  ];
+
+  const setFieldState = (field, hasError) => {
+    if (!field) return;
+    field.setAttribute("aria-invalid", String(hasError));
+  };
+
+  const setStatus = (message, type = "") => {
+    status.textContent = message;
+    status.className = type ? `form-status ${type}` : "form-status";
+  };
+
+  const getLastSubmittedAt = () => {
+    try {
+      return Number(localStorage.getItem("portfolioFormSubmittedAt"));
+    } catch {
+      return 0;
+    }
+  };
+
+  const setLastSubmittedAt = () => {
+    try {
+      localStorage.setItem("portfolioFormSubmittedAt", String(Date.now()));
+    } catch {
+      // Private browsing can block storage; the form should still submit.
+    }
+  };
+
+  const countUrls = (value) => {
+    const matches = value.match(/https?:\/\/|www\.|\.com|\.net|\.org/gi);
+    return matches ? matches.length : 0;
+  };
+
+  const submitToGoogleSheet = (payload) => {
+    const requestBody = new URLSearchParams(payload);
+
+    return fetch(endpoint, {
+      method: "POST",
+      mode: "no-cors",
+      body: requestBody
+    });
+  };
+
+  const validateSubmission = ({ name, email, message }) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const emailDomain = email.split("@").pop().toLowerCase();
+    const normalizedMessage = message.toLowerCase();
+    const wordCount = message.split(/\s+/).filter(Boolean).length;
+
+    if (Date.now() - mountedAt < 4000) {
+      return "Please take a moment to complete the form before submitting.";
+    }
+
+    if (name.length < 2 || name.length > 80 || /https?:\/\/|www\./i.test(name)) {
+      return "Please enter a real name without links.";
+    }
+
+    if (!emailPattern.test(email) || disposableEmailDomains.includes(emailDomain)) {
+      return "Please enter a valid email address.";
+    }
+
+    if (message.length < 20 || wordCount < 5) {
+      return "Please add a little more detail so I can understand your request.";
+    }
+
+    if (message.length > 1200) {
+      return "Please keep your message under 1200 characters.";
+    }
+
+    if (countUrls(message) > 1) {
+      return "Please include no more than one link in your message.";
+    }
+
+    if (/(.)\1{8,}/.test(message)) {
+      return "Please remove repeated characters from your message.";
+    }
+
+    if (blockedTerms.some((term) => normalizedMessage.includes(term))) {
+      return "This message looks like spam. Please revise it and try again.";
+    }
+
+    return "";
+  };
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    if ((formData.get("company") || "").toString().trim()) {
+      return;
+    }
+
+    const name = (formData.get("name") || "").toString().trim();
+    const email = (formData.get("email") || "").toString().trim();
+    const message = (formData.get("message") || "").toString().trim();
+    const nameField = form.elements.name;
+    const emailField = form.elements.email;
+    const messageField = form.elements.message;
+
+    [nameField, emailField, messageField].forEach((field) =>
+      setFieldState(field, false)
+    );
+
+    if (!name || !email || !message) {
+      [nameField, emailField, messageField].forEach((field) =>
+        setFieldState(field, !field.value.trim())
+      );
+      setStatus("Please complete all fields before submitting.", "is-error");
+      return;
+    }
+
+    const validationError = validateSubmission({ name, email, message });
+    if (validationError) {
+      setFieldState(nameField, validationError.includes("name"));
+      setFieldState(emailField, validationError.includes("email"));
+      setFieldState(
+        messageField,
+        !validationError.includes("name") && !validationError.includes("email")
+      );
+      setStatus(validationError, "is-error");
+      return;
+    }
+
+    const lastSubmittedAt = getLastSubmittedAt();
+    if (lastSubmittedAt && Date.now() - lastSubmittedAt < 60000) {
+      setStatus("Please wait a minute before sending another message.", "is-error");
+      return;
+    }
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) submitButton.disabled = true;
+
+    setStatus("Sending your message...");
+
+    const payload = {
+      name,
+      email,
+      message,
+      source_page: window.location.href
+    };
+
+    try {
+      await submitToGoogleSheet(payload);
+
+      setLastSubmittedAt();
+      setStatus(
+        "Message submitted. Please check the spreadsheet to confirm it was saved.",
+        "is-success"
+      );
+      form.reset();
+    } catch (error) {
+      setStatus(
+        "Could not send right now. Please try again or email me directly.",
+        "is-error"
+      );
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  });
+};
+
 renderContent();
 setupReveal();
 setupFaq();
 setupNavigation();
+setupContactForm();

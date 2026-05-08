@@ -834,6 +834,15 @@ textarea {
   gap: 16px;
 }
 
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 .contact-form label {
   display: grid;
   gap: 8px;
@@ -854,12 +863,38 @@ textarea {
   color: var(--text);
 }
 
+.contact-form input[aria-invalid="true"],
+.contact-form textarea[aria-invalid="true"] {
+  border-bottom-color: #a13d3d;
+}
+
+.contact-form button:disabled {
+  cursor: wait;
+  opacity: 0.62;
+  transform: none;
+}
+
 .contact-form .full {
   grid-column: 1 / -1;
 }
 
 .contact-form button {
   width: fit-content;
+}
+
+.form-status {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.form-status.is-error {
+  color: #a13d3d;
+}
+
+.form-status.is-success {
+  color: #24683d;
 }
 
 .site-footer {

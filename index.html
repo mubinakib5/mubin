@@ -280,19 +280,38 @@
 
               <div class="contact-links" id="contact-links"></div>
 
-              <form
-                class="contact-form"
-                action="mailto:mubinalakib786@gmail.com"
-                method="post"
-                enctype="text/plain"
-              >
+              <form class="contact-form" id="contact-form" novalidate>
+                <label class="honeypot" aria-hidden="true">
+                  <span>Leave this empty</span>
+                  <input
+                    type="text"
+                    name="company"
+                    tabindex="-1"
+                    autocomplete="off"
+                  />
+                </label>
                 <label>
                   <span>Your Name</span>
-                  <input type="text" name="name" placeholder="Your name" />
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    autocomplete="name"
+                    minlength="2"
+                    maxlength="80"
+                    required
+                  />
                 </label>
                 <label>
                   <span>Your Email</span>
-                  <input type="email" name="email" placeholder="your@email.com" />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    autocomplete="email"
+                    maxlength="120"
+                    required
+                  />
                 </label>
                 <label class="full">
                   <span>Your Message</span>
@@ -300,9 +319,13 @@
                     name="message"
                     rows="4"
                     placeholder="Tell me about your project, role, or idea."
+                    minlength="20"
+                    maxlength="1200"
+                    required
                   ></textarea>
                 </label>
                 <button class="button primary" type="submit">Submit</button>
+                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
               </form>
             </div>
           </div>
